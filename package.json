@@ -1,0 +1,32 @@
+{
+  "name": "jinja-beautify",
+  "version": "1.0.0",
+  "description": "Beautify jinja via js-beautify",
+  "main": "index.js",
+  "bin": {
+    "jinja-beautify": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idmytro/jinja-beautify.git"
+  },
+  "keywords": [
+    "jinja",
+    "html",
+    "beautify",
+    "js-beautify"
+  ],
+  "author": "Dmytro Cisar <i@dmyt.ro> (http://dmyt.ro/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/idmytro/jinja-beautify/issues"
+  },
+  "homepage": "https://github.com/idmytro/jinja-beautify#readme",
+  "dependencies": {
+    "js-beautify": "1.7.4",
+    "yargs": "9.0.1"
+  }
+}
