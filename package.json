@@ -1,6 +1,6 @@
 {
   "name": "jinja-beautify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Beautify jinja via js-beautify",
   "main": "index.js",
   "bin": {
