@@ -4,17 +4,23 @@ const argv = require('yargs').argv
 const fs = require('fs')
 const beautifyHtml = require('js-beautify').html
 
-function beautify (file) {
-  fs.readFile(file, 'utf8', (err, data) => {
+export function beautifyJinja (code) {
+  const codeWithJinjaTags = code
+    .replace(/({#|{%|{{)/gi, '<jinja>$1')
+    .replace(/(#}|%}|}})/gi, '$1<\/jinja>')
+
+  const result = beautifyHtml(codeWithJinjaTags)
+    .replace(/<jinja>({#|{%|{{)/gi, '$1')
+    .replace(/(#}|%}|}})<\/jinja>/gi, '$1')
+
+  return result
+}
+
+function beautifyFile (file) {
+  fs.readFile(file, 'utf8', (err, code) => {
     if (err) throw err
 
-    const jinjaTags = data
-      .replace(/({#|{%|{{)/gi, '<jinja>$1')
-      .replace(/(#}|%}|}})/gi, '$1<\/jinja>')
-
-    const result = beautifyHtml(jinjaTags)
-      .replace(/<jinja>({#|{%|{{)/gi, '$1')
-      .replace(/(#}|%}|}})<\/jinja>/gi, '$1')
+    const result = beautifyJinja(code)
 
     fs.writeFile(file, result, err => {
       if (err) throw err
@@ -23,4 +29,4 @@ function beautify (file) {
   })
 }
 
-argv._.forEach(beautify)
+argv._.forEach(beautifyFile)
